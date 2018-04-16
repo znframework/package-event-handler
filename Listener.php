@@ -107,9 +107,9 @@ class Listener
      */
     protected static function getListenersSortByPriority(String $eventName) : Array
     {
-        if ( ! isset(Properties::$listeners[$eventName]))
-		{
-			return [];
+        if( ! isset(Properties::$listeners[$eventName]))
+        {
+            return [];
         }
         
         array_multisort(Properties::$listeners[$eventName][0], SORT_NUMERIC, Properties::$listeners[$eventName][1]);
