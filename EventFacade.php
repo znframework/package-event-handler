@@ -9,7 +9,7 @@
  * @author  Ozan UYKUN [ozan@znframework.com]
  */
 
-class EventFacade
+class Events
 {
     use ZN\Ability\Facade;
 
