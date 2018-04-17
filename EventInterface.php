@@ -44,16 +44,17 @@ interface EventInterface
      * 
      * @return array
      */
-    public static function selectListeners();
+    public static function selectListeners() : Array;
 
     /**
      * Delete a listener.
      * 
      * @param string $eventName
+     * @param mixed  $callback = NULL
      * 
      * @return bool
      */
-    public static function deleteListener(String $eventName) : Bool;
+    public static function deleteListener(String $eventName, $callback = NULL) : Bool;
 
     /**
      * Delete all listeners.

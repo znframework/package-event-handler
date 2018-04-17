@@ -78,12 +78,36 @@ class Listener
      * Delete a listener.
      * 
      * @param string $eventName
+     * @param mixed  $callback = NULL
      * 
      * @return bool
      */
-    public static function delete(String $eventName) : Bool
+    public static function delete(String $eventName, $callback = NULL) : Bool
     {
-        unset(Properties::$listeners[$eventName]);
+        if( $callback === NULL )
+        {
+            unset(Properties::$listeners[$eventName]);
+        }
+        else
+        {
+            $callback = self::callback($callback);
+
+            if( isset(Properties::$listeners[$eventName]) )
+            {
+                foreach( Properties::$listeners[$eventName][1] as $key => $callable )
+                {
+                    if( print_r($callback, true) === print_r($callable, true) )
+                    {
+                        unset(Properties::$listeners[$eventName][0][$key]);
+                        unset(Properties::$listeners[$eventName][1][$key]);
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }     
 
         return true;
     }
@@ -107,9 +131,9 @@ class Listener
      */
     protected static function getListenersSortByPriority(String $eventName) : Array
     {
-        if( ! isset(Properties::$listeners[$eventName]))
-        {
-            return [];
+        if ( ! isset(Properties::$listeners[$eventName]))
+		{
+			return [];
         }
         
         array_multisort(Properties::$listeners[$eventName][0], SORT_NUMERIC, Properties::$listeners[$eventName][1]);
