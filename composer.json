@@ -3,7 +3,7 @@
     "description": "ZN Framework Event Handler Package",
     "license": "MIT",
     "homepage": "https://znframework.com",
-    "keywords": ["znframework", "event", "events", "event-handler"],
+    "keywords": ["znframework", "events", "event-handler"],
     "authors": [
         {
             "name": "Ozan Uykun",
